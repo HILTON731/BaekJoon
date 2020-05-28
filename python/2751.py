@@ -1,3 +1,5 @@
+
+# # merge sort v.1
 # num = int(input())
 
 # num_list = []
@@ -32,29 +34,59 @@
 #             result.append(right[0])
 #             right = right[1:]
 #     return result
-            
-v = [int(input()) for i in range(int(input()))]
 
-def merge(left, right) :
-    v=list()
-    i=0;j=0
-    while(i<len(left) and j<len(right)) :
-        if left[i]<=right[j] :
-            v.append(left[i])
-            i+=1
-        else :
-            v.append(right[j])
-            j+=1
-    if i==len(left) : v = v + right[j:len(right)]
-    if j == len(right): v = v + left[i:len(left)]
-    return v
+# # merge sort v.2            
+# v = [int(input()) for i in range(int(input()))]
+
+# def merge(left, right) :
+#     v=list()
+#     i=0;j=0
+#     while(i<len(left) and j<len(right)) :
+#         if left[i]<=right[j] :
+#             v.append(left[i])
+#             i+=1
+#         else :
+#             v.append(right[j])
+#             j+=1
+#     if i==len(left) : v = v + right[j:len(right)]
+#     if j == len(right): v = v + left[i:len(left)]
+#     return v
  
-def merge_sort(v) :
-    if len(v) <= 1 : return v
-    m = len(v)//2
-    left = merge_sort(v[0:m])
-    right = merge_sort(v[m:len(v)])
-    return merge(left, right)
+# def merge_sort(v) :
+#     if len(v) <= 1 : return v
+#     m = len(v)//2
+#     left = merge_sort(v[0:m])
+#     right = merge_sort(v[m:len(v)])
+#     return merge(left, right)
 
-m = merge_sort(v)
-print(*m, sep="\n")
+# m = merge_sort(num_list)
+# print(*m, sep="\n")
+
+# quick sort v.1
+
+q_list = [int(input()) for i in range(int(input()))]
+
+def quick_sort(list):
+    if len(list) <= 1:
+        return list
+    pivot = list[0]
+    lList = [list[i] for i in range(1, len(list)) if pivot < list[i]]
+    rList = [list[i] for i in range(1, len(list)) if pivot > list[i]]
+    List = [list[i] for i in range(1, len(list)) if pivot == list[i]]
+    return quick_sort(lList)+List+quick_sort(rList)
+print(quick_sort(q_list))
+
+# qucik sort v.2
+def quick_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    pivot = arr[len(arr) // 2]
+    lesser_arr, equal_arr, greater_arr = [], [], []
+    for num in arr:
+        if num < pivot:
+            lesser_arr.append(num)
+        elif num > pivot:
+            greater_arr.append(num)
+        else:
+            equal_arr.append(num)
+    return quick_sort(lesser_arr) + equal_arr + quick_sort(greater_arr)
