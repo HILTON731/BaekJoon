@@ -1,24 +1,23 @@
 num = int(input())
-count = list()
-for i in range(num):
-    count.append(int(input()))
-result = list()
-def fib(n):
-    if n == 0:
-        return 0
-    elif n == 1:
-        return 1
-    else:
-        fst = fib(n - 1)
-        sec = fib(n - 2)
-        if fst < 2:
-            temp.append(fst)
-        if sec < 2:
-            temp.append(sec)
-        return fst + sec
-for n in count:
-    temp = list()
-    fib(n)
-    result.append([temp.count(0), temp.count(1)])
+temp = []
 
-print(result)
+
+def fib(n):
+    c0 = [1,0,1]
+    c1 = [0,1,1]
+    if n < 3:
+        return c0[n], c1[n]
+    else:
+        for i in range(3, n + 1):
+            c0.append(c0[i-1] + c0[i-2])
+            c1.append(c1[i-1] + c1[i-2])
+        return c0[n], c1[n]
+for _ in range(num):
+    zero, one = fib(int(input()))
+    print(zero, one)
+# 원래는 재귀호출을 사용한 피보나치 수열 함수에서 1과 0이 출력될 경우를 세는 방식을 사용했다.
+# 하지만 이 방식을 사용할 경우 재귀호출로 인한 부담때문인지 시간초과가 발생했다.
+# 그래서 검색을 통해 알아보니 0과 1을 출력할때 규칙성이 있었음을 발견했다.
+# 규칙은 1과 0의 개수가 3 이상부터는 각 호출 이전과 그 전의 합만큼 호출이 된다는 점이었다.
+# 규칙을 보이는 1과 0의 패턴을 사용하여 문제에 적용을 했지만 한번만 초기화해서 이후의 숫자에 문제를 적용할때 문제가 됐다.
+# 문제를 파악한 후 함수 호출을 할때마다 각 배열들을 초기화시키는 방식으로 구현을 하여 해당 문제를 해결했다.
