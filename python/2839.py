@@ -2,17 +2,32 @@ import sys
 
 weight = int(sys.stdin.readline())
 
-count = weight // 5
-left = weight % 5
+# case 1
+# count = weight // 5
+# left = weight % 5
 
+# while True:
+#     if left % 3 == 0:
+#         count += left // 3
+#         break
+#     left += 5
+#     count -= 1
+#     if count < 0:
+#         count = -1
+#         break
+
+# print(count)
+
+# case 2
+
+count = 0
 while True:
-    if left % 3 == 0:
-        count += left // 3
+    if weight % 5 == 0:
+        count += weight // 5
+        print(count)
         break
-    left += 5
-    count -= 1
-    if count < 0:
-        count = -1
+    weight -= 3
+    count += 1
+    if weight < 0:
+        print(-1)
         break
-
-print(count)
