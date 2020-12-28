@@ -1,30 +1,58 @@
 import sys
 
+
+# case 1
 N, M = map(int, sys.stdin.readline().split())
 
-num_list = list(range(1, N + 1))
-check_list = [False] * N
-arr = list()
+check = [False] * N
+tmp = list()
 
 def dfs(count):
+    if count == M:
+        print(*tmp)
+        return None
 
-    if(count == M):
-        print(arr)
-        return
-    
     for i in range(N):
-        if(check_list[i]):
+        if check[i]:
             continue
+        check[i] = True
+        tmp.append(i+1)
+        dfs(count+1)
 
-        check_list[i] = True
-        arr.append(num_list[i])
-
-        dfs(count + 1)
-        arr.pop()
-
-        # print(arr)
-        # print(check_list)
-
-        check_list[i] = False
+        tmp.pop()
+        check[i] = False
 
 dfs(0)
+
+# case 2
+from itertools import permutations
+
+N, M = map(int, sys.stdin.readline().split())
+
+tmp = [i for i in range(1,N+1)]
+
+for per in permutations(tmp, M):
+    for i in per:
+        print(i, end=' ')
+    print()
+
+# case 3
+
+N, M = map(int, sys.stdin.readline().split())
+check = [False] * N
+tmp = list()
+
+def dfs1(count):
+    if count == M:
+        print(*tmp)
+        return None
+    for i in range(N):
+        if check[i]:
+            continue
+        check[i] = True
+        tmp.append(i+1)
+        dfs(count+1)
+        check[i] = False
+        tmp.pop()
+
+dfs1(0)
