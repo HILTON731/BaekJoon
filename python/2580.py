@@ -7,25 +7,9 @@ for i in range(9):
     for j in range(9):
         if puzzle[i][j] == 0:
             tmp.append((i,j))
-
-
-# def promising(count):
-#     x, y = tmp[count]
-#     dx = (x // 3) * 3
-#     dy = (y // 3) * 3
-#     for i in range(1,10):
-#         if puzzle[x].count(i) > 1 or list(zip(*puzzle))[y].count(i) > 1:
-#             return False
-#     check = [True] * 9
-#     for i in range(dx, dx + 3):
-#         for j in range(dy, dy + 3):
-#             num = puzzle[i][j]
-#             if num > 0:
-#                 if check[num - 1]:
-#                     check[num - 1] = False
-#                 else:
-#                     return False
-#     return True
+# First just hard coding. Too much time spent that occur time running out problem.
+# Second changed way of backtracking. Not checking all case of number just checking once and give a list of promising numbers.
+# With those steps. Works well.
 
 def promising(count, x, y):
     dx = (x // 3) * 3
@@ -48,12 +32,10 @@ def sudoku(count):
             print(*i)
         sys.exit(0)
     else:
-        # for i in range(1,10):
-        #     puzzle[tmp[count][0]][tmp[count][1]] = i
-        #     if promising(count):
-        #         sudoku(count+1)
         x, y = tmp[count]
-        for i in promising(count, x, y):
+        num = promising(count, x, y)
+        for i in num:
             puzzle[x][y] = i
             sudoku(count+1)
+            puzzle[x][y] = 0
 sudoku(0)
