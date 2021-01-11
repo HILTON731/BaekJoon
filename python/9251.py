@@ -13,4 +13,3 @@ print(check[-1][-1])
         
 # reference: https://twinw.tistory.com/126, https://reakwon.tistory.com/67
 # 2 dimensional memory means compare of string bound of index each side
-# 
