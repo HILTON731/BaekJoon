@@ -4,7 +4,7 @@ input = sys.stdin.readline
 
 tmpA = list(input().strip().upper())
 tmpB = list(input().strip().upper())
-check = [[0] * (len(tmpB)+1) for _ in range(len(tmpA)+1)]
+check = [[0] * (len(tmpB)+1) for _ in range(len(tmp)+1)]
 
 if len(tmpA) * len(tmpB) == 0:
     print(0)
