@@ -1,10 +1,12 @@
 import sys
 
-N, K = map(int, sys.stdin.readline().split())
-stuff = list(list(map(int, sys.stdin.readline().split()))for _ in range(N))
-stuff.sort(key=lambda k: (k[1]/k[0], k[1]), reverse=True)
-tmp = [0, 0] * N
+n, w = map(int, sys.stdin.readline().split())
+stuff = list(list(map(int, sys.stdin.readline().split()))for _ in range(n))
+dp = [0] * (w + 1)
 
-print(tmp)
-for i in range(N):
-    tmp[i] = max(tmp[i], tmp[i] + stuff[i][0])
+for i in range(n):
+    for j in range(w, 1, -1):
+        if stuff[i][0] <= j:
+            dp[j] = max(dp[j], dp[j-stuff[i][0]] + stuff[i][1])
+
+print(stuff[-1])
